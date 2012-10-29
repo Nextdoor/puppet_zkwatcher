@@ -4,7 +4,7 @@ Puppet Plugin: ZooKeeper Watcher Integration
 
 This Puppet module and plugin serves two functions. It provides a method for
 building Puppet manifests with dynamically-obtained ZooKeeper server lists. It
-also provides a method for configuring `[zk_watcher](http://github.com/Nextdoor/zkwatcher)` to monitor one or many
+also provides a method for configuring [zk_watcher](http://github.com/Nextdoor/zkwatcher) to monitor one or many
 services on a particular host, and register them with ZooKeeper.
 
 zkget: Retrieving dynamic server lists
@@ -27,7 +27,7 @@ which is how the `zk_watcher` daemon registers them.
 zkwatcher: Puppet Client Module
 -------------------------------
 
-The `zkwatcher` class installs the `[zk_watcher](http://github.com/Nextdoor/zkwatcher)` pip module, configures an
+The `zkwatcher` class installs the [zk_watcher](http://github.com/Nextdoor/zkwatcher) pip module, configures an
 Upstart job to start up the service, and provides a definition that can be used
 throughout your Puppet classes to register different services with Apache ZooKeeper
 in a method that allows the above `zkget` function to be used.
