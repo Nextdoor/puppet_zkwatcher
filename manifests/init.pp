@@ -16,17 +16,25 @@
 #
 class zk_watcher {
   # Install python packages required for Zookeeper communication
-  $wantedpippackages = [ 'zk_watcher' ]
+  $wantedpippackages = ['zk_watcher']
+
+  if (!defined(Package['python-pip'])) {
+    package { "python": ensure => installed }
+
+    package { "python-pip":
+      ensure  => installed,
+      require => Package["python"],
+    }
+  }
 
   package { $wantedpippackages:
     ensure   => present,
     provider => pip,
-    require  => Class['python'];
+    require  => [Package["python-pip"]];
   }
 
   # Copy up the private key
-  file {
-    '/etc/zk':
+  file { '/etc/zk':
     ensure  => directory,
     owner   => root,
     group   => root,
@@ -48,9 +56,9 @@ class zk_watcher {
   }
 
   # Make sure that there's a header in our ZK config file
-  concat::fragment{ '/etc/zk/config.cfg-header':
+  concat::fragment { '/etc/zk/config.cfg-header':
     target  => '/etc/zk/config.cfg',
-    content => '# zookeeper config file is managed by puppet.\n',
+    content => "# zookeeper config file is managed by puppet.\n",
     order   => 1;
   }
 }

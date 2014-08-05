@@ -9,6 +9,6 @@ limit nofile 8192 8192
 
 script
     exec start-stop-daemon --start -c root --name zk_watcher \
-        --exec /usr/local/bin/zk_watcher -- start --foreground
+        --exec /usr/local/bin/zk_watcher -- start
 end script
 

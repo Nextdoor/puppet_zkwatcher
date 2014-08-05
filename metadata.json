@@ -1,0 +1,14 @@
+{
+  "author": "",
+  "dependencies": [
+    {"version_requirement":"1.1.0","name":"puppetlabs/concat"}
+  ],
+  "description": "",
+  "license": "",
+  "name": "nextdoor-zk_watcher",
+  "project_page": "",
+  "source": "",
+  "summary": "",
+  "types": [],
+  "version": "0.1.0"
+}

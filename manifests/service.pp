@@ -20,22 +20,23 @@ class zk_watcher::service {
   # Push our zk_watcher upstart job
   file {
     '/etc/init/zk_watcher.conf':
-    ensure  => present,
-    source  => 'puppet:///modules/zk/upstart',
-    notify  => Service['zk_watcher'],
-    require => Class['zk'];
+      ensure  => present,
+      source  => 'puppet:///modules/zk_watcher/upstart',
+      notify  => Service['zk_watcher'],
+      require => Class['zk_watcher'],
+      before  => Service['zk_watcher'];
 
     '/etc/init.d/zk_watcher':
-    ensure  => symlink,
-    target  => '/lib/init/upstart-job',
-    require => File['/etc/init/zk_watcher.conf'];
+      ensure  => symlink,
+      target  => '/lib/init/upstart-job',
+      require => File['/etc/init/zk_watcher.conf'];
   }
 
   service { 'zk_watcher':
-    ensure     => running,
-    provider   => upstart,
-    hasstatus  => true,
-    subscribe  => Class['zk_watcher'],
-    require    => Class['zk_watcher'];
+    ensure    => running,
+    provider  => upstart,
+    hasstatus => true,
+    subscribe => Class['zk_watcher'],
+    require   => Class['zk_watcher'];
   }
 }
