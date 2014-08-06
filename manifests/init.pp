@@ -58,7 +58,7 @@ class zk_watcher {
   # Make sure that there's a header in our ZK config file
   concat::fragment { '/etc/zk/config.cfg-header':
     target  => '/etc/zk/config.cfg',
-    content => "# zookeeper config file is managed by puppet.\n",
+    content => '# zookeeper config file is managed by puppet.',
     order   => 1;
   }
 }
